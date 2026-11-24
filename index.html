@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculators</title>
+  <title>Lemar Tolero's Calculators</title>
 
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -19,13 +23,50 @@
       font-family: system-ui, sans-serif;
     }
 
+    header {
+      margin-bottom: 24px;
+      padding: 24px;
+      border-radius: 12px;
+      background: white;
+      text-align: center;
+      box-shadow: 0 4px 14px #00000012;
+    }
+
+    header h1 {
+      margin-top: 0;
+    }
+
+    .shortcut-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .shortcut-nav a {
+      display: inline-block;
+      padding: 9px 13px;
+      border-radius: 6px;
+      background: #1769e0;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .shortcut-nav a:hover,
+    .shortcut-nav a:focus {
+      background: #0e4fae;
+    }
+
     .calculator {
       margin: 20px 0;
       padding: 24px;
-      background: white;
       border: 1px solid #d9dce1;
       border-radius: 12px;
+      background: white;
       box-shadow: 0 4px 14px #00000012;
+      scroll-margin-top: 16px;
     }
 
     .calculator-heading {
@@ -51,13 +92,9 @@
       font-size: 1.1rem;
     }
 
-    label,
-    h3 {
+    label {
       display: block;
       margin-top: 16px;
-    }
-
-    label {
       font-weight: 600;
     }
 
@@ -102,16 +139,17 @@
       border: 2px solid #1769e0;
       border-radius: 8px;
       background: #f1f6ff;
-      line-height: 1.7;
       font-weight: bold;
+      line-height: 1.7;
       overflow-wrap: anywhere;
     }
 
     .result-box.empty {
       color: #6b7280;
+      font-weight: normal;
     }
 
-    .error {
+    .result-box.error {
       border-color: #b42318;
       background: #fff2f0;
       color: #b42318;
@@ -125,9 +163,28 @@
 </head>
 
 <body>
+  <header>
+    <h1>Lemar Tolero</h1>
+    <p>
+      Hello, I am Lemar the creator of this website which shows different
+      types of calculators. Feel free to use any of these as it may help you
+      on your solutions!
+    </p>
+
+    <nav class="shortcut-nav" aria-label="Calculator shortcuts">
+      <a href="#temperature">Temperature conversion</a>
+      <a href="#length">Length conversion</a>
+      <a href="#income-tax">Income Tax</a>
+      <a href="#payroll">Payroll</a>
+    </nav>
+  </header>
+
   <main>
-    <!-- Temperature Converter -->
-    <section class="calculator" aria-labelledby="temperature-heading">
+    <section
+      id="temperature"
+      class="calculator"
+      aria-labelledby="temperature-heading"
+    >
       <div class="calculator-heading">
         <span class="category-badge">TEMPERATURE</span>
         <h2 id="temperature-heading">
@@ -137,8 +194,12 @@
       </div>
 
       <label for="temperatureValue">Enter temperature</label>
-      <input id="temperatureValue" type="number" step="any"
-        placeholder="Enter a number" />
+      <input
+        id="temperatureValue"
+        type="number"
+        step="any"
+        placeholder="Enter a number"
+      />
 
       <label for="temperatureDirection">Choose conversion</label>
       <select id="temperatureDirection">
@@ -150,15 +211,18 @@
         Convert temperature
       </button>
 
-      <div id="temperatureResult"
+      <div
+        id="temperatureResult"
         class="result-box empty"
-        aria-live="polite">
-        Result will appear here
-      </div>
+        aria-live="polite"
+      >Result will appear here</div>
     </section>
 
-    <!-- Height/Length Converter -->
-    <section class="calculator" aria-labelledby="length-heading">
+    <section
+      id="length"
+      class="calculator"
+      aria-labelledby="length-heading"
+    >
       <div class="calculator-heading">
         <span class="category-badge">HEIGHT / LENGTH</span>
         <h2 id="length-heading">
@@ -168,8 +232,13 @@
       </div>
 
       <label for="lengthValue">Enter height or length</label>
-      <input id="lengthValue" type="number" min="0" step="any"
-        placeholder="Enter a number" />
+      <input
+        id="lengthValue"
+        type="number"
+        min="0"
+        step="any"
+        placeholder="Enter a number"
+      />
 
       <label for="lengthDirection">Choose conversion</label>
       <select id="lengthDirection">
@@ -177,19 +246,20 @@
         <option value="ftToM">ft → m — Feet to Meters</option>
       </select>
 
-      <button id="lengthButton" type="button">
-        Convert length
-      </button>
+      <button id="lengthButton" type="button">Convert length</button>
 
-      <div id="lengthResult"
+      <div
+        id="lengthResult"
         class="result-box empty"
-        aria-live="polite">
-        Result will appear here
-      </div>
+        aria-live="polite"
+      >Result will appear here</div>
     </section>
 
-    <!-- Income Tax Calculator -->
-    <section class="calculator" aria-labelledby="income-heading">
+    <section
+      id="income-tax"
+      class="calculator"
+      aria-labelledby="income-heading"
+    >
       <div class="calculator-heading">
         <span class="category-badge">INCOME TAX</span>
         <h2 id="income-heading">
@@ -198,26 +268,39 @@
         </h2>
       </div>
 
+      <p class="hint">
+        This is a simple estimate using the income and tax rate you enter.
+      </p>
+
       <label for="income">Annual income ($)</label>
-      <input id="income" type="number" min="0" step="0.01"
-        placeholder="Example: 50000" />
+      <input
+        id="income"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 50000"
+      />
 
       <label for="incomeTaxRate">Income tax rate (%)</label>
-      <input id="incomeTaxRate" type="number" min="0" step="0.01"
-        placeholder="Example: 15" />
+      <input
+        id="incomeTaxRate"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 15"
+      />
 
       <button id="incomeTaxButton" type="button">
         Calculate income tax
       </button>
 
-      <div id="incomeTaxResult"
+      <div
+        id="incomeTaxResult"
         class="result-box empty"
-        aria-live="polite">
-        Result will appear here
-      </div>
+        aria-live="polite"
+      >Result will appear here</div>
     </section>
 
-    <!-- Loop Lab -->
     <section class="calculator" aria-labelledby="loop-heading">
       <div class="calculator-heading">
         <span class="category-badge">LOOP LAB</span>
@@ -229,50 +312,57 @@
 
       <h3>Factorial — while loop</h3>
       <label for="factorialNumber">Whole number from 0 to 170</label>
-      <input id="factorialNumber" type="number" min="0" max="170"
-        step="1" placeholder="Example: 5" />
-
+      <input
+        id="factorialNumber"
+        type="number"
+        min="0"
+        max="170"
+        step="1"
+        placeholder="Example: 5"
+      />
       <button id="factorialButton" type="button">
         Calculate factorial
       </button>
-
-      <div id="factorialResult"
+      <div
+        id="factorialResult"
         class="result-box empty"
-        aria-live="polite">
-        Result will appear here
-      </div>
+        aria-live="polite"
+      >Result will appear here</div>
 
       <h3>Sum — do...while loop</h3>
       <label for="sumNumbers">Numbers separated by commas</label>
-      <input id="sumNumbers" type="text"
-        placeholder="Example: 5, 10, 15" />
-
+      <input
+        id="sumNumbers"
+        type="text"
+        placeholder="Example: 5, 10, 15"
+      />
       <button id="sumButton" type="button">Calculate sum</button>
-
-      <div id="sumResult"
+      <div
+        id="sumResult"
         class="result-box empty"
-        aria-live="polite">
-        Result will appear here
-      </div>
+        aria-live="polite"
+      >Result will appear here</div>
 
       <h3>Average — for loop</h3>
       <label for="averageNumbers">Numbers separated by commas</label>
-      <input id="averageNumbers" type="text"
-        placeholder="Example: 5, 10, 15" />
-
-      <button id="averageButton" type="button">
-        Calculate average
-      </button>
-
-      <div id="averageResult"
+      <input
+        id="averageNumbers"
+        type="text"
+        placeholder="Example: 5, 10, 15"
+      />
+      <button id="averageButton" type="button">Calculate average</button>
+      <div
+        id="averageResult"
         class="result-box empty"
-        aria-live="polite">
-        Result will appear here
-      </div>
+        aria-live="polite"
+      >Result will appear here</div>
     </section>
 
-    <!-- Simple Payroll -->
-    <section class="calculator" aria-labelledby="payroll-heading">
+    <section
+      id="payroll"
+      class="calculator"
+      aria-labelledby="payroll-heading"
+    >
       <div class="calculator-heading">
         <span class="category-badge">PAYROLL</span>
         <h2 id="payroll-heading">
@@ -282,35 +372,54 @@
       </div>
 
       <p class="hint">
-        Uses 40 regular hours. Additional hours are paid at 1.5×.
+        Uses 40 regular hours per week. Additional hours are paid at 1.5×.
         Deductions are calculated automatically from the deduction rate.
       </p>
 
       <label for="employeeName">Employee name</label>
-      <input id="employeeName" type="text"
-        placeholder="Enter employee name" />
+      <input
+        id="employeeName"
+        type="text"
+        placeholder="Enter employee name"
+      />
 
       <label for="hourlyRate">Hourly pay rate ($)</label>
-      <input id="hourlyRate" type="number" min="0" step="0.01"
-        placeholder="Example: 20.00" />
+      <input
+        id="hourlyRate"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 20.00"
+      />
 
       <label for="hoursWorked">Total hours worked</label>
-      <input id="hoursWorked" type="number" min="0" step="0.01"
-        placeholder="Example: 45" />
+      <input
+        id="hoursWorked"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 45"
+      />
 
       <label for="deductionRate">Deduction rate (%)</label>
-      <input id="deductionRate" type="number" min="0" max="100"
-        step="0.01" value="10" />
+      <input
+        id="deductionRate"
+        type="number"
+        min="0"
+        max="100"
+        step="0.01"
+        value="10"
+      />
 
       <button id="payrollButton" type="button">
         Calculate payroll
       </button>
 
-      <div id="payrollResult"
+      <div
+        id="payrollResult"
         class="result-box empty"
-        aria-live="polite">
-        Payroll result will appear here
-      </div>
+        aria-live="polite"
+      >Payroll result will appear here</div>
     </section>
   </main>
 
@@ -328,20 +437,18 @@
       element.classList.toggle("error", isError);
     }
 
-    function clearResult(element) {
-      element.classList.remove("error");
-    }
-
     function parseNumberList(inputText) {
       const text = inputText.trim();
 
-      if (text === "") return null;
+      if (text === "") {
+        return null;
+      }
 
-      const parts = text
-        .split(",")
-        .map((part) => part.trim());
+      const parts = text.split(",").map((part) => part.trim());
 
-      if (parts.some((part) => part === "")) return null;
+      if (parts.some((part) => part === "")) {
+        return null;
+      }
 
       const numbers = parts.map(Number);
 
@@ -352,17 +459,14 @@
       return numbers;
     }
 
-    // Temperature converter
+    // Temperature conversion
     document
       .querySelector("#temperatureButton")
       .addEventListener("click", () => {
         const input = document.querySelector("#temperatureValue").value;
         const direction =
           document.querySelector("#temperatureDirection").value;
-        const result =
-          document.querySelector("#temperatureResult");
-
-        clearResult(result);
+        const result = document.querySelector("#temperatureResult");
 
         if (input === "") {
           showResult(result, "Enter a temperature.", true);
@@ -373,30 +477,21 @@
 
         if (direction === "cToF") {
           const answer = value * 9 / 5 + 32;
-          showResult(
-            result,
-            `${value} °C = ${answer.toFixed(2)} °F`
-          );
+          showResult(result, `${value} °C = ${answer.toFixed(2)} °F`);
         } else {
           const answer = (value - 32) * 5 / 9;
-          showResult(
-            result,
-            `${value} °F = ${answer.toFixed(2)} °C`
-          );
+          showResult(result, `${value} °F = ${answer.toFixed(2)} °C`);
         }
       });
 
-    // Length converter
+    // Length conversion
     document
       .querySelector("#lengthButton")
       .addEventListener("click", () => {
         const input = document.querySelector("#lengthValue").value;
         const direction =
           document.querySelector("#lengthDirection").value;
-        const result =
-          document.querySelector("#lengthResult");
-
-        clearResult(result);
+        const result = document.querySelector("#lengthResult");
 
         if (input === "") {
           showResult(result, "Enter a height or length.", true);
@@ -406,11 +501,7 @@
         const value = Number(input);
 
         if (value < 0) {
-          showResult(
-            result,
-            "Height or length cannot be negative.",
-            true
-          );
+          showResult(result, "Height or length cannot be negative.", true);
           return;
         }
 
@@ -429,18 +520,13 @@
         }
       });
 
-    // Income tax calculator
+    // Income tax estimate
     document
       .querySelector("#incomeTaxButton")
       .addEventListener("click", () => {
-        const incomeText =
-          document.querySelector("#income").value;
-        const rateText =
-          document.querySelector("#incomeTaxRate").value;
-        const result =
-          document.querySelector("#incomeTaxResult");
-
-        clearResult(result);
+        const incomeText = document.querySelector("#income").value;
+        const rateText = document.querySelector("#incomeTaxRate").value;
+        const result = document.querySelector("#incomeTaxResult");
 
         if (incomeText === "" || rateText === "") {
           showResult(
@@ -463,48 +549,32 @@
           return;
         }
 
-        const incomeTax = income * rate / 100;
-        const afterTaxIncome = income - incomeTax;
+        const tax = income * rate / 100;
+        const afterTaxIncome = income - tax;
 
         showResult(
           result,
-          `Estimated income tax: ${formatCurrency(incomeTax)} | ` +
+          `Estimated income tax: ${formatCurrency(tax)} | ` +
           `Income after tax: ${formatCurrency(afterTaxIncome)}`
         );
       });
 
-    // Factorial: while loop
+    // Factorial using a while loop
     document
       .querySelector("#factorialButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#factorialNumber").value;
-        const result =
-          document.querySelector("#factorialResult");
-
-        clearResult(result);
+        const input = document.querySelector("#factorialNumber").value;
+        const result = document.querySelector("#factorialResult");
 
         if (input === "") {
-          showResult(
-            result,
-            "Enter a whole number from 0 to 170.",
-            true
-          );
+          showResult(result, "Enter a whole number from 0 to 170.", true);
           return;
         }
 
         const number = Number(input);
 
-        if (
-          !Number.isInteger(number) ||
-          number < 0 ||
-          number > 170
-        ) {
-          showResult(
-            result,
-            "Enter a whole number from 0 to 170.",
-            true
-          );
+        if (!Number.isInteger(number) || number < 0 || number > 170) {
+          showResult(result, "Enter a whole number from 0 to 170.", true);
           return;
         }
 
@@ -519,17 +589,12 @@
         showResult(result, `${number}! = ${factorial}`);
       });
 
-    // Sum: do...while loop
+    // Sum using a do...while loop
     document
       .querySelector("#sumButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#sumNumbers").value;
-        const result =
-          document.querySelector("#sumResult");
-
-        clearResult(result);
-
+        const input = document.querySelector("#sumNumbers").value;
+        const result = document.querySelector("#sumResult");
         const numbers = parseNumberList(input);
 
         if (!numbers) {
@@ -552,17 +617,12 @@
         showResult(result, `Sum: ${sum}`);
       });
 
-    // Average: for loop
+    // Average using a for loop
     document
       .querySelector("#averageButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#averageNumbers").value;
-        const result =
-          document.querySelector("#averageResult");
-
-        clearResult(result);
-
+        const input = document.querySelector("#averageNumbers").value;
+        const result = document.querySelector("#averageResult");
         const numbers = parseNumberList(input);
 
         if (!numbers) {
@@ -576,16 +636,14 @@
 
         let sum = 0;
 
-        for (
-          let index = 0;
-          index < numbers.length;
-          index++
-        ) {
+        for (let index = 0; index < numbers.length; index++) {
           sum += numbers[index];
         }
 
-        const average = sum / numbers.length;
-        showResult(result, `Average: ${average.toFixed(2)}`);
+        showResult(
+          result,
+          `Average: ${(sum / numbers.length).toFixed(2)}`
+        );
       });
 
     // Simple payroll
@@ -600,10 +658,7 @@
           document.querySelector("#hoursWorked").value;
         const deductionRateText =
           document.querySelector("#deductionRate").value;
-        const result =
-          document.querySelector("#payrollResult");
-
-        clearResult(result);
+        const result = document.querySelector("#payrollResult");
 
         if (
           employeeName === "" ||
@@ -611,18 +666,13 @@
           hoursWorkedText === "" ||
           deductionRateText === ""
         ) {
-          showResult(
-            result,
-            "Complete all payroll fields.",
-            true
-          );
+          showResult(result, "Complete all payroll fields.", true);
           return;
         }
 
         const hourlyRate = Number(hourlyRateText);
         const hoursWorked = Number(hoursWorkedText);
-        const deductionRate =
-          Number(deductionRateText);
+        const deductionRate = Number(deductionRateText);
 
         if (
           !Number.isFinite(hourlyRate) ||
@@ -635,26 +685,19 @@
         ) {
           showResult(
             result,
-            "Use valid numbers. Deduction rate must be 0–100%.",
+            "Use valid numbers. Deduction rate must be from 0 to 100%.",
             true
           );
           return;
         }
 
-        const regularHours =
-          Math.min(hoursWorked, 40);
-        const overtimeHours =
-          Math.max(hoursWorked - 40, 0);
-        const regularPay =
-          regularHours * hourlyRate;
-        const overtimePay =
-          overtimeHours * hourlyRate * 1.5;
-        const grossPay =
-          regularPay + overtimePay;
-        const deductions =
-          grossPay * deductionRate / 100;
-        const takeHomePay =
-          grossPay - deductions;
+        const regularHours = Math.min(hoursWorked, 40);
+        const overtimeHours = Math.max(hoursWorked - 40, 0);
+        const regularPay = regularHours * hourlyRate;
+        const overtimePay = overtimeHours * hourlyRate * 1.5;
+        const grossPay = regularPay + overtimePay;
+        const deductions = grossPay * deductionRate / 100;
+        const takeHomePay = grossPay - deductions;
 
         showResult(
           result,
@@ -662,8 +705,7 @@
           `Regular pay: ${formatCurrency(regularPay)} | ` +
           `Overtime pay: ${formatCurrency(overtimePay)} | ` +
           `Gross pay: ${formatCurrency(grossPay)} | ` +
-          `Deductions (${deductionRate}%): ` +
-          `${formatCurrency(deductions)} | ` +
+          `Deductions (${deductionRate}%): ${formatCurrency(deductions)} | ` +
           `Take-home pay: ${formatCurrency(takeHomePay)}`
         );
       });
