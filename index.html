@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Calculators</title>
+  <title>Calculators</title>
 
   <style>
     * {
@@ -19,10 +19,6 @@
       font-family: system-ui, sans-serif;
     }
 
-    h1 {
-      text-align: center;
-    }
-
     .calculator {
       margin: 20px 0;
       padding: 24px;
@@ -30,6 +26,30 @@
       border: 1px solid #d9dce1;
       border-radius: 12px;
       box-shadow: 0 4px 14px #00000012;
+    }
+
+    .calculator-heading {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #e8f0fe;
+      color: #1769e0;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .calculator-symbol {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 1.1rem;
+      color: #1769e0;
     }
 
     label {
@@ -85,7 +105,6 @@
     }
 
     .hint {
-      margin-bottom: 0;
       color: #555;
       font-size: 0.95rem;
     }
@@ -93,36 +112,16 @@
 </head>
 
 <body>
-  <h1>My Calculators</h1>
-
   <main>
-    <section class="calculator" aria-labelledby="tax-heading">
-      <h2 id="tax-heading">Sales Tax Calculator</h2>
-
-      <label for="price">Price before tax ($)</label>
-      <input
-        id="price"
-        type="number"
-        min="0"
-        step="0.01"
-        placeholder="Type the price here"
-      />
-
-      <label for="taxRate">Tax rate (%)</label>
-      <input
-        id="taxRate"
-        type="number"
-        min="0"
-        step="0.01"
-        placeholder="Type the tax rate here"
-      />
-
-      <button id="taxButton" type="button">Calculate tax</button>
-      <p id="taxResult" class="result" aria-live="polite"></p>
-    </section>
-
+    <!-- Temperature Converter -->
     <section class="calculator" aria-labelledby="temperature-heading">
-      <h2 id="temperature-heading">Temperature Converter</h2>
+      <div class="calculator-heading">
+        <span class="category-badge">TEMPERATURE</span>
+        <h2 id="temperature-heading">
+          Celsius ⇄ Fahrenheit
+          <span class="calculator-symbol">°C / °F</span>
+        </h2>
+      </div>
 
       <label for="temperatureValue">Enter temperature</label>
       <input
@@ -134,8 +133,8 @@
 
       <label for="temperatureDirection">Choose conversion</label>
       <select id="temperatureDirection">
-        <option value="cToF">Celsius to Fahrenheit</option>
-        <option value="fToC">Fahrenheit to Celsius</option>
+        <option value="cToF">°C → °F — Celsius to Fahrenheit</option>
+        <option value="fToC">°F → °C — Fahrenheit to Celsius</option>
       </select>
 
       <button id="temperatureButton" type="button">
@@ -144,8 +143,15 @@
       <p id="temperatureResult" class="result" aria-live="polite"></p>
     </section>
 
+    <!-- Length Converter -->
     <section class="calculator" aria-labelledby="length-heading">
-      <h2 id="length-heading">Length Converter</h2>
+      <div class="calculator-heading">
+        <span class="category-badge">LENGTH</span>
+        <h2 id="length-heading">
+          Meters ⇄ Feet
+          <span class="calculator-symbol">m / ft</span>
+        </h2>
+      </div>
 
       <label for="lengthValue">Enter length</label>
       <input
@@ -158,21 +164,25 @@
 
       <label for="lengthDirection">Choose conversion</label>
       <select id="lengthDirection">
-        <option value="mToFt">Meters to Feet</option>
-        <option value="ftToM">Feet to Meters</option>
+        <option value="mToFt">m → ft — Meters to Feet</option>
+        <option value="ftToM">ft → m — Feet to Meters</option>
       </select>
 
       <button id="lengthButton" type="button">Convert length</button>
       <p id="lengthResult" class="result" aria-live="polite"></p>
     </section>
 
+    <!-- Loop Lab -->
     <section class="calculator" aria-labelledby="loop-heading">
-      <h2 id="loop-heading">Loop Lab</h2>
-      <p class="hint">
-        Try factorial, sum, and average using different JavaScript loops.
-      </p>
+      <div class="calculator-heading">
+        <span class="category-badge">LOOP LAB</span>
+        <h2 id="loop-heading">
+          Loop Calculations
+          <span class="calculator-symbol">{ } / n</span>
+        </h2>
+      </div>
 
-      <h3>Factorial (while loop)</h3>
+      <h3>Factorial — while loop</h3>
       <label for="factorialNumber">Whole number from 0 to 170</label>
       <input
         id="factorialNumber"
@@ -187,7 +197,7 @@
       </button>
       <p id="factorialResult" class="result" aria-live="polite"></p>
 
-      <h3>Sum (do...while loop)</h3>
+      <h3>Sum — do...while loop</h3>
       <label for="sumNumbers">Numbers separated by commas</label>
       <input
         id="sumNumbers"
@@ -197,7 +207,7 @@
       <button id="sumButton" type="button">Calculate sum</button>
       <p id="sumResult" class="result" aria-live="polite"></p>
 
-      <h3>Average (for loop)</h3>
+      <h3>Average — for loop</h3>
       <label for="averageNumbers">Numbers separated by commas</label>
       <input
         id="averageNumbers"
@@ -208,11 +218,18 @@
       <p id="averageResult" class="result" aria-live="polite"></p>
     </section>
 
+    <!-- Payroll Calculator -->
     <section class="calculator" aria-labelledby="payroll-heading">
-      <h2 id="payroll-heading">Simple Payroll</h2>
+      <div class="calculator-heading">
+        <span class="category-badge">PAYROLL</span>
+        <h2 id="payroll-heading">
+          Simple Payroll
+          <span class="calculator-symbol">$ / hrs</span>
+        </h2>
+      </div>
+
       <p class="hint">
-        A 40-hour workweek is used. Hours over 40 are paid at 1.5 times
-        the hourly rate.
+        Uses 40 regular hours per week. Additional hours are paid at 1.5×.
       </p>
 
       <label for="hourlyRate">Hourly pay rate ($)</label>
@@ -245,6 +262,38 @@
       <button id="payrollButton" type="button">Calculate payroll</button>
       <p id="payrollResult" class="result" aria-live="polite"></p>
     </section>
+
+    <!-- Sales Tax Calculator moved to the bottom -->
+    <section class="calculator" aria-labelledby="tax-heading">
+      <div class="calculator-heading">
+        <span class="category-badge">SALES TAX</span>
+        <h2 id="tax-heading">
+          Sales Tax Calculator
+          <span class="calculator-symbol">$ / %</span>
+        </h2>
+      </div>
+
+      <label for="price">Price before tax ($)</label>
+      <input
+        id="price"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Type the price here"
+      />
+
+      <label for="taxRate">Tax rate (%)</label>
+      <input
+        id="taxRate"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Type the tax rate here"
+      />
+
+      <button id="taxButton" type="button">Calculate tax</button>
+      <p id="taxResult" class="result" aria-live="polite"></p>
+    </section>
   </main>
 
   <script>
@@ -266,17 +315,13 @@
     }
 
     function parseNumberList(inputText) {
-      const trimmedText = inputText.trim();
+      const text = inputText.trim();
 
-      if (trimmedText === "") {
-        return null;
-      }
+      if (text === "") return null;
 
-      const parts = trimmedText.split(",").map((part) => part.trim());
+      const parts = text.split(",").map((part) => part.trim());
 
-      if (parts.some((part) => part === "")) {
-        return null;
-      }
+      if (parts.some((part) => part === "")) return null;
 
       const numbers = parts.map(Number);
 
@@ -287,45 +332,13 @@
       return numbers;
     }
 
-    // Sales tax calculator
-    document.querySelector("#taxButton").addEventListener("click", () => {
-      const priceText = document.querySelector("#price").value;
-      const rateText = document.querySelector("#taxRate").value;
-      const result = document.querySelector("#taxResult");
-
-      clearError(result);
-
-      if (priceText === "" || rateText === "") {
-        showError(result, "Enter both the price and the tax rate.");
-        return;
-      }
-
-      const price = Number(priceText);
-      const rate = Number(rateText);
-
-      if (price < 0 || rate < 0) {
-        showError(result, "Price and tax rate cannot be negative.");
-        return;
-      }
-
-      const tax = price * rate / 100;
-      const total = price + tax;
-
-      result.textContent =
-        `Tax: ${formatCurrency(tax)} | ` +
-        `Total with tax: ${formatCurrency(total)}`;
-    });
-
-    // Celsius/Fahrenheit converter
+    // Celsius/Fahrenheit
     document
       .querySelector("#temperatureButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#temperatureValue").value;
-        const direction =
-          document.querySelector("#temperatureDirection").value;
-        const result =
-          document.querySelector("#temperatureResult");
+        const input = document.querySelector("#temperatureValue").value;
+        const direction = document.querySelector("#temperatureDirection").value;
+        const result = document.querySelector("#temperatureResult");
 
         clearError(result);
 
@@ -347,16 +360,13 @@
         }
       });
 
-    // Meters/Feet converter
+    // Meters/Feet
     document
       .querySelector("#lengthButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#lengthValue").value;
-        const direction =
-          document.querySelector("#lengthDirection").value;
-        const result =
-          document.querySelector("#lengthResult");
+        const input = document.querySelector("#lengthValue").value;
+        const direction = document.querySelector("#lengthDirection").value;
+        const result = document.querySelector("#lengthResult");
 
         clearError(result);
 
@@ -383,14 +393,12 @@
         }
       });
 
-    // Factorial using a while loop
+    // Factorial: while loop
     document
       .querySelector("#factorialButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#factorialNumber").value;
-        const result =
-          document.querySelector("#factorialResult");
+        const input = document.querySelector("#factorialNumber").value;
+        const result = document.querySelector("#factorialResult");
 
         clearError(result);
 
@@ -417,14 +425,12 @@
         result.textContent = `${number}! = ${factorial}`;
       });
 
-    // Sum using a do...while loop
+    // Sum: do...while loop
     document
       .querySelector("#sumButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#sumNumbers").value;
-        const result =
-          document.querySelector("#sumResult");
+        const input = document.querySelector("#sumNumbers").value;
+        const result = document.querySelector("#sumResult");
 
         clearError(result);
 
@@ -433,7 +439,7 @@
         if (!numbers) {
           showError(
             result,
-            "Enter valid numbers separated by commas, such as 5, 10, 15."
+            "Enter valid numbers separated by commas."
           );
           return;
         }
@@ -449,14 +455,12 @@
         result.textContent = `Sum: ${sum}`;
       });
 
-    // Average using a for loop
+    // Average: for loop
     document
       .querySelector("#averageButton")
       .addEventListener("click", () => {
-        const input =
-          document.querySelector("#averageNumbers").value;
-        const result =
-          document.querySelector("#averageResult");
+        const input = document.querySelector("#averageNumbers").value;
+        const result = document.querySelector("#averageResult");
 
         clearError(result);
 
@@ -465,7 +469,7 @@
         if (!numbers) {
           showError(
             result,
-            "Enter valid numbers separated by commas, such as 5, 10, 15."
+            "Enter valid numbers separated by commas."
           );
           return;
         }
@@ -476,22 +480,18 @@
           sum += numbers[index];
         }
 
-        const average = sum / numbers.length;
-        result.textContent = `Average: ${average.toFixed(2)}`;
+        result.textContent =
+          `Average: ${(sum / numbers.length).toFixed(2)}`;
       });
 
-    // Simple payroll calculator
+    // Simple Payroll
     document
       .querySelector("#payrollButton")
       .addEventListener("click", () => {
-        const rateText =
-          document.querySelector("#hourlyRate").value;
-        const hoursText =
-          document.querySelector("#hoursWorked").value;
-        const deductionsText =
-          document.querySelector("#deductions").value;
-        const result =
-          document.querySelector("#payrollResult");
+        const rateText = document.querySelector("#hourlyRate").value;
+        const hoursText = document.querySelector("#hoursWorked").value;
+        const deductionsText = document.querySelector("#deductions").value;
+        const result = document.querySelector("#payrollResult");
 
         clearError(result);
 
@@ -527,13 +527,42 @@
         const takeHomePay = grossPay - deductions;
 
         result.textContent =
-          `Regular pay (${regularHours} hours): ` +
-          `${formatCurrency(regularPay)} | ` +
-          `Overtime pay (${overtimeHours} hours): ` +
-          `${formatCurrency(overtimePay)} | ` +
+          `Regular pay (${regularHours} hrs): ${formatCurrency(regularPay)} | ` +
+          `Overtime pay (${overtimeHours} hrs): ${formatCurrency(overtimePay)} | ` +
           `Gross pay: ${formatCurrency(grossPay)} | ` +
           `Deductions: ${formatCurrency(deductions)} | ` +
           `Take-home pay: ${formatCurrency(takeHomePay)}`;
+      });
+
+    // Sales Tax
+    document
+      .querySelector("#taxButton")
+      .addEventListener("click", () => {
+        const priceText = document.querySelector("#price").value;
+        const rateText = document.querySelector("#taxRate").value;
+        const result = document.querySelector("#taxResult");
+
+        clearError(result);
+
+        if (priceText === "" || rateText === "") {
+          showError(result, "Enter both the price and the tax rate.");
+          return;
+        }
+
+        const price = Number(priceText);
+        const rate = Number(rateText);
+
+        if (price < 0 || rate < 0) {
+          showError(result, "Price and tax rate cannot be negative.");
+          return;
+        }
+
+        const tax = price * rate / 100;
+        const total = price + tax;
+
+        result.textContent =
+          `Tax: ${formatCurrency(tax)} | ` +
+          `Total with tax: ${formatCurrency(total)}`;
       });
   </script>
 </body>
