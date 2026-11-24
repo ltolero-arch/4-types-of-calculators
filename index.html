@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lemar Tolero's Calculators</title>
+  <title>Calculators</title>
 
   <style>
     * {
@@ -33,7 +33,7 @@
     }
 
     header h1 {
-      margin-top: 0;
+      margin: 20px 0 10px;
     }
 
     .shortcut-nav {
@@ -41,7 +41,6 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin-top: 20px;
     }
 
     .shortcut-nav a {
@@ -164,19 +163,20 @@
 
 <body>
   <header>
-    <h1>Lemar Tolero</h1>
-    <p>
-      Hello, I am Lemar the creator of this website which shows different
-      types of calculators. Feel free to use any of these as it may help you
-      on your solutions!
-    </p>
-
     <nav class="shortcut-nav" aria-label="Calculator shortcuts">
       <a href="#temperature">Temperature conversion</a>
       <a href="#length">Length conversion</a>
       <a href="#income-tax">Income Tax</a>
       <a href="#payroll">Payroll</a>
     </nav>
+
+    <h1>Calculating conversions, loops, income tax, and payrolls</h1>
+
+    <p>
+      Hello, I am Lemar the creator of this website which shows different
+      types of calculators. Feel free to use any of these as it may help you
+      on your solutions!
+    </p>
   </header>
 
   <main>
@@ -444,7 +444,9 @@
         return null;
       }
 
-      const parts = text.split(",").map((part) => part.trim());
+      const parts = text
+        .split(",")
+        .map((part) => part.trim());
 
       if (parts.some((part) => part === "")) {
         return null;
@@ -459,14 +461,14 @@
       return numbers;
     }
 
-    // Temperature conversion
     document
       .querySelector("#temperatureButton")
       .addEventListener("click", () => {
         const input = document.querySelector("#temperatureValue").value;
         const direction =
           document.querySelector("#temperatureDirection").value;
-        const result = document.querySelector("#temperatureResult");
+        const result =
+          document.querySelector("#temperatureResult");
 
         if (input === "") {
           showResult(result, "Enter a temperature.", true);
@@ -477,21 +479,28 @@
 
         if (direction === "cToF") {
           const answer = value * 9 / 5 + 32;
-          showResult(result, `${value} °C = ${answer.toFixed(2)} °F`);
+          showResult(
+            result,
+            `${value} °C = ${answer.toFixed(2)} °F`
+          );
         } else {
           const answer = (value - 32) * 5 / 9;
-          showResult(result, `${value} °F = ${answer.toFixed(2)} °C`);
+          showResult(
+            result,
+            `${value} °F = ${answer.toFixed(2)} °C`
+          );
         }
       });
 
-    // Length conversion
     document
       .querySelector("#lengthButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#lengthValue").value;
+        const input =
+          document.querySelector("#lengthValue").value;
         const direction =
           document.querySelector("#lengthDirection").value;
-        const result = document.querySelector("#lengthResult");
+        const result =
+          document.querySelector("#lengthResult");
 
         if (input === "") {
           showResult(result, "Enter a height or length.", true);
@@ -501,7 +510,11 @@
         const value = Number(input);
 
         if (value < 0) {
-          showResult(result, "Height or length cannot be negative.", true);
+          showResult(
+            result,
+            "Height or length cannot be negative.",
+            true
+          );
           return;
         }
 
@@ -520,13 +533,15 @@
         }
       });
 
-    // Income tax estimate
     document
       .querySelector("#incomeTaxButton")
       .addEventListener("click", () => {
-        const incomeText = document.querySelector("#income").value;
-        const rateText = document.querySelector("#incomeTaxRate").value;
-        const result = document.querySelector("#incomeTaxResult");
+        const incomeText =
+          document.querySelector("#income").value;
+        const rateText =
+          document.querySelector("#incomeTaxRate").value;
+        const result =
+          document.querySelector("#incomeTaxResult");
 
         if (incomeText === "" || rateText === "") {
           showResult(
@@ -559,22 +574,35 @@
         );
       });
 
-    // Factorial using a while loop
     document
       .querySelector("#factorialButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#factorialNumber").value;
-        const result = document.querySelector("#factorialResult");
+        const input =
+          document.querySelector("#factorialNumber").value;
+        const result =
+          document.querySelector("#factorialResult");
 
         if (input === "") {
-          showResult(result, "Enter a whole number from 0 to 170.", true);
+          showResult(
+            result,
+            "Enter a whole number from 0 to 170.",
+            true
+          );
           return;
         }
 
         const number = Number(input);
 
-        if (!Number.isInteger(number) || number < 0 || number > 170) {
-          showResult(result, "Enter a whole number from 0 to 170.", true);
+        if (
+          !Number.isInteger(number) ||
+          number < 0 ||
+          number > 170
+        ) {
+          showResult(
+            result,
+            "Enter a whole number from 0 to 170.",
+            true
+          );
           return;
         }
 
@@ -589,12 +617,13 @@
         showResult(result, `${number}! = ${factorial}`);
       });
 
-    // Sum using a do...while loop
     document
       .querySelector("#sumButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#sumNumbers").value;
-        const result = document.querySelector("#sumResult");
+        const input =
+          document.querySelector("#sumNumbers").value;
+        const result =
+          document.querySelector("#sumResult");
         const numbers = parseNumberList(input);
 
         if (!numbers) {
@@ -617,12 +646,13 @@
         showResult(result, `Sum: ${sum}`);
       });
 
-    // Average using a for loop
     document
       .querySelector("#averageButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#averageNumbers").value;
-        const result = document.querySelector("#averageResult");
+        const input =
+          document.querySelector("#averageNumbers").value;
+        const result =
+          document.querySelector("#averageResult");
         const numbers = parseNumberList(input);
 
         if (!numbers) {
@@ -636,7 +666,11 @@
 
         let sum = 0;
 
-        for (let index = 0; index < numbers.length; index++) {
+        for (
+          let index = 0;
+          index < numbers.length;
+          index++
+        ) {
           sum += numbers[index];
         }
 
@@ -646,7 +680,6 @@
         );
       });
 
-    // Simple payroll
     document
       .querySelector("#payrollButton")
       .addEventListener("click", () => {
@@ -658,7 +691,8 @@
           document.querySelector("#hoursWorked").value;
         const deductionRateText =
           document.querySelector("#deductionRate").value;
-        const result = document.querySelector("#payrollResult");
+        const result =
+          document.querySelector("#payrollResult");
 
         if (
           employeeName === "" ||
@@ -666,13 +700,18 @@
           hoursWorkedText === "" ||
           deductionRateText === ""
         ) {
-          showResult(result, "Complete all payroll fields.", true);
+          showResult(
+            result,
+            "Complete all payroll fields.",
+            true
+          );
           return;
         }
 
         const hourlyRate = Number(hourlyRateText);
         const hoursWorked = Number(hoursWorkedText);
-        const deductionRate = Number(deductionRateText);
+        const deductionRate =
+          Number(deductionRateText);
 
         if (
           !Number.isFinite(hourlyRate) ||
@@ -691,13 +730,20 @@
           return;
         }
 
-        const regularHours = Math.min(hoursWorked, 40);
-        const overtimeHours = Math.max(hoursWorked - 40, 0);
-        const regularPay = regularHours * hourlyRate;
-        const overtimePay = overtimeHours * hourlyRate * 1.5;
-        const grossPay = regularPay + overtimePay;
-        const deductions = grossPay * deductionRate / 100;
-        const takeHomePay = grossPay - deductions;
+        const regularHours =
+          Math.min(hoursWorked, 40);
+        const overtimeHours =
+          Math.max(hoursWorked - 40, 0);
+        const regularPay =
+          regularHours * hourlyRate;
+        const overtimePay =
+          overtimeHours * hourlyRate * 1.5;
+        const grossPay =
+          regularPay + overtimePay;
+        const deductions =
+          grossPay * deductionRate / 100;
+        const takeHomePay =
+          grossPay - deductions;
 
         showResult(
           result,
@@ -705,7 +751,8 @@
           `Regular pay: ${formatCurrency(regularPay)} | ` +
           `Overtime pay: ${formatCurrency(overtimePay)} | ` +
           `Gross pay: ${formatCurrency(grossPay)} | ` +
-          `Deductions (${deductionRate}%): ${formatCurrency(deductions)} | ` +
+          `Deductions (${deductionRate}%): ` +
+          `${formatCurrency(deductions)} | ` +
           `Take-home pay: ${formatCurrency(takeHomePay)}`
         );
       });
