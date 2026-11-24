@@ -23,24 +23,19 @@
       font-family: system-ui, sans-serif;
     }
 
-    header {
-      margin-bottom: 24px;
-      padding: 24px;
-      border-radius: 12px;
-      background: white;
-      text-align: center;
-      box-shadow: 0 4px 14px #00000012;
-    }
-
-    header h1 {
-      margin: 20px 0 10px;
-    }
-
     .shortcut-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
+      margin-bottom: 20px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #f5f7fa;
+      box-shadow: 0 2px 8px #00000018;
     }
 
     .shortcut-nav a {
@@ -58,6 +53,19 @@
       background: #0e4fae;
     }
 
+    header {
+      margin-bottom: 24px;
+      padding: 24px;
+      border-radius: 12px;
+      background: white;
+      text-align: center;
+      box-shadow: 0 4px 14px #00000012;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+    }
+
     .calculator {
       margin: 20px 0;
       padding: 24px;
@@ -65,7 +73,7 @@
       border-radius: 12px;
       background: white;
       box-shadow: 0 4px 14px #00000012;
-      scroll-margin-top: 16px;
+      scroll-margin-top: 90px;
     }
 
     .calculator-heading {
@@ -162,16 +170,15 @@
 </head>
 
 <body>
+  <nav class="shortcut-nav" aria-label="Calculator shortcuts">
+    <a href="#temperature">Temperature conversion</a>
+    <a href="#length">Length conversion</a>
+    <a href="#income-tax">Income Tax</a>
+    <a href="#payroll">Payroll</a>
+  </nav>
+
   <header>
-    <nav class="shortcut-nav" aria-label="Calculator shortcuts">
-      <a href="#temperature">Temperature conversion</a>
-      <a href="#length">Length conversion</a>
-      <a href="#income-tax">Income Tax</a>
-      <a href="#payroll">Payroll</a>
-    </nav>
-
     <h1>Calculating conversions, loops, income tax, and payrolls</h1>
-
     <p>
       Hello, I am Lemar the creator of this website which shows different
       types of calculators. Feel free to use any of these as it may help you
@@ -464,7 +471,8 @@
     document
       .querySelector("#temperatureButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#temperatureValue").value;
+        const input =
+          document.querySelector("#temperatureValue").value;
         const direction =
           document.querySelector("#temperatureDirection").value;
         const result =
