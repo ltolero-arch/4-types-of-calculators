@@ -122,17 +122,17 @@
     </section>
 
     <section class="calculator" aria-labelledby="temperature-heading">
-      <h2 id="temperature-heading">Celsius and Fahrenheit Converter</h2>
+      <h2 id="temperature-heading">Temperature Converter</h2>
 
-      <label for="temperature">Temperature</label>
+      <label for="temperatureValue">Enter temperature</label>
       <input
-        id="temperature"
+        id="temperatureValue"
         type="number"
         step="any"
-        placeholder="Type a temperature here"
+        placeholder="Enter a number"
       />
 
-      <label for="temperatureDirection">Convert from and to</label>
+      <label for="temperatureDirection">Choose conversion</label>
       <select id="temperatureDirection">
         <option value="cToF">Celsius to Fahrenheit</option>
         <option value="fToC">Fahrenheit to Celsius</option>
@@ -145,21 +145,21 @@
     </section>
 
     <section class="calculator" aria-labelledby="length-heading">
-      <h2 id="length-heading">Meters and Feet Converter</h2>
+      <h2 id="length-heading">Length Converter</h2>
 
-      <label for="length">Length</label>
+      <label for="lengthValue">Enter length</label>
       <input
-        id="length"
+        id="lengthValue"
         type="number"
         min="0"
         step="any"
-        placeholder="Type a length here"
+        placeholder="Enter a number"
       />
 
-      <label for="lengthDirection">Convert from and to</label>
+      <label for="lengthDirection">Choose conversion</label>
       <select id="lengthDirection">
-        <option value="mToFt">Meters to feet</option>
-        <option value="ftToM">Feet to meters</option>
+        <option value="mToFt">Meters to Feet</option>
+        <option value="ftToM">Feet to Meters</option>
       </select>
 
       <button id="lengthButton" type="button">Convert length</button>
@@ -169,7 +169,7 @@
     <section class="calculator" aria-labelledby="loop-heading">
       <h2 id="loop-heading">Loop Lab</h2>
       <p class="hint">
-        Try the factorial, sum, and average examples using different JavaScript loops.
+        Try factorial, sum, and average using different JavaScript loops.
       </p>
 
       <h3>Factorial (while loop)</h3>
@@ -211,8 +211,8 @@
     <section class="calculator" aria-labelledby="payroll-heading">
       <h2 id="payroll-heading">Simple Payroll</h2>
       <p class="hint">
-        This example uses a 40-hour workweek and pays overtime at 1.5 times
-        the hourly rate. Enter total deductions as a dollar amount.
+        A 40-hour workweek is used. Hours over 40 are paid at 1.5 times
+        the hourly rate.
       </p>
 
       <label for="hourlyRate">Hourly pay rate ($)</label>
@@ -312,17 +312,20 @@
       const total = price + tax;
 
       result.textContent =
-        `Tax: ${formatCurrency(tax)} | Total with tax: ${formatCurrency(total)}`;
+        `Tax: ${formatCurrency(tax)} | ` +
+        `Total with tax: ${formatCurrency(total)}`;
     });
 
     // Celsius/Fahrenheit converter
     document
       .querySelector("#temperatureButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#temperature").value;
+        const input =
+          document.querySelector("#temperatureValue").value;
         const direction =
           document.querySelector("#temperatureDirection").value;
-        const result = document.querySelector("#temperatureResult");
+        const result =
+          document.querySelector("#temperatureResult");
 
         clearError(result);
 
@@ -334,49 +337,60 @@
         const value = Number(input);
 
         if (direction === "cToF") {
-          const answer = value * 9 / 5 + 32;
-          result.textContent = `${value} °C = ${answer.toFixed(2)} °F`;
+          const fahrenheit = value * 9 / 5 + 32;
+          result.textContent =
+            `${value} °C = ${fahrenheit.toFixed(2)} °F`;
         } else {
-          const answer = (value - 32) * 5 / 9;
-          result.textContent = `${value} °F = ${answer.toFixed(2)} °C`;
+          const celsius = (value - 32) * 5 / 9;
+          result.textContent =
+            `${value} °F = ${celsius.toFixed(2)} °C`;
         }
       });
 
-    // Meters/feet converter
-    document.querySelector("#lengthButton").addEventListener("click", () => {
-      const input = document.querySelector("#length").value;
-      const direction = document.querySelector("#lengthDirection").value;
-      const result = document.querySelector("#lengthResult");
+    // Meters/Feet converter
+    document
+      .querySelector("#lengthButton")
+      .addEventListener("click", () => {
+        const input =
+          document.querySelector("#lengthValue").value;
+        const direction =
+          document.querySelector("#lengthDirection").value;
+        const result =
+          document.querySelector("#lengthResult");
 
-      clearError(result);
+        clearError(result);
 
-      if (input === "") {
-        showError(result, "Enter a length.");
-        return;
-      }
+        if (input === "") {
+          showError(result, "Enter a length.");
+          return;
+        }
 
-      const value = Number(input);
+        const value = Number(input);
 
-      if (value < 0) {
-        showError(result, "Length cannot be negative.");
-        return;
-      }
+        if (value < 0) {
+          showError(result, "Length cannot be negative.");
+          return;
+        }
 
-      if (direction === "mToFt") {
-        const answer = value * 3.28084;
-        result.textContent = `${value} meters = ${answer.toFixed(2)} feet`;
-      } else {
-        const answer = value / 3.28084;
-        result.textContent = `${value} feet = ${answer.toFixed(2)} meters`;
-      }
-    });
+        if (direction === "mToFt") {
+          const feet = value * 3.28084;
+          result.textContent =
+            `${value} meters = ${feet.toFixed(2)} feet`;
+        } else {
+          const meters = value / 3.28084;
+          result.textContent =
+            `${value} feet = ${meters.toFixed(2)} meters`;
+        }
+      });
 
     // Factorial using a while loop
     document
       .querySelector("#factorialButton")
       .addEventListener("click", () => {
-        const input = document.querySelector("#factorialNumber").value;
-        const result = document.querySelector("#factorialResult");
+        const input =
+          document.querySelector("#factorialNumber").value;
+        const result =
+          document.querySelector("#factorialResult");
 
         clearError(result);
 
@@ -404,68 +418,80 @@
       });
 
     // Sum using a do...while loop
-    document.querySelector("#sumButton").addEventListener("click", () => {
-      const input = document.querySelector("#sumNumbers").value;
-      const result = document.querySelector("#sumResult");
+    document
+      .querySelector("#sumButton")
+      .addEventListener("click", () => {
+        const input =
+          document.querySelector("#sumNumbers").value;
+        const result =
+          document.querySelector("#sumResult");
 
-      clearError(result);
+        clearError(result);
 
-      const numbers = parseNumberList(input);
+        const numbers = parseNumberList(input);
 
-      if (!numbers) {
-        showError(
-          result,
-          "Enter valid numbers separated by commas, such as 5, 10, 15."
-        );
-        return;
-      }
+        if (!numbers) {
+          showError(
+            result,
+            "Enter valid numbers separated by commas, such as 5, 10, 15."
+          );
+          return;
+        }
 
-      let sum = 0;
-      let index = 0;
+        let sum = 0;
+        let index = 0;
 
-      do {
-        sum += numbers[index];
-        index++;
-      } while (index < numbers.length);
+        do {
+          sum += numbers[index];
+          index++;
+        } while (index < numbers.length);
 
-      result.textContent = `Sum: ${sum}`;
-    });
+        result.textContent = `Sum: ${sum}`;
+      });
 
     // Average using a for loop
-    document.querySelector("#averageButton").addEventListener("click", () => {
-      const input = document.querySelector("#averageNumbers").value;
-      const result = document.querySelector("#averageResult");
+    document
+      .querySelector("#averageButton")
+      .addEventListener("click", () => {
+        const input =
+          document.querySelector("#averageNumbers").value;
+        const result =
+          document.querySelector("#averageResult");
 
-      clearError(result);
+        clearError(result);
 
-      const numbers = parseNumberList(input);
+        const numbers = parseNumberList(input);
 
-      if (!numbers) {
-        showError(
-          result,
-          "Enter valid numbers separated by commas, such as 5, 10, 15."
-        );
-        return;
-      }
+        if (!numbers) {
+          showError(
+            result,
+            "Enter valid numbers separated by commas, such as 5, 10, 15."
+          );
+          return;
+        }
 
-      let sum = 0;
+        let sum = 0;
 
-      for (let index = 0; index < numbers.length; index++) {
-        sum += numbers[index];
-      }
+        for (let index = 0; index < numbers.length; index++) {
+          sum += numbers[index];
+        }
 
-      const average = sum / numbers.length;
-      result.textContent = `Average: ${average.toFixed(2)}`;
-    });
+        const average = sum / numbers.length;
+        result.textContent = `Average: ${average.toFixed(2)}`;
+      });
 
     // Simple payroll calculator
     document
       .querySelector("#payrollButton")
       .addEventListener("click", () => {
-        const rateText = document.querySelector("#hourlyRate").value;
-        const hoursText = document.querySelector("#hoursWorked").value;
-        const deductionsText = document.querySelector("#deductions").value;
-        const result = document.querySelector("#payrollResult");
+        const rateText =
+          document.querySelector("#hourlyRate").value;
+        const hoursText =
+          document.querySelector("#hoursWorked").value;
+        const deductionsText =
+          document.querySelector("#deductions").value;
+        const result =
+          document.querySelector("#payrollResult");
 
         clearError(result);
 
@@ -501,12 +527,14 @@
         const takeHomePay = grossPay - deductions;
 
         result.textContent =
-          `Regular pay (${regularHours} hours): ${formatCurrency(regularPay)} | ` +
-          `Overtime pay (${overtimeHours} hours): ${formatCurrency(overtimePay)} | ` +
+          `Regular pay (${regularHours} hours): ` +
+          `${formatCurrency(regularPay)} | ` +
+          `Overtime pay (${overtimeHours} hours): ` +
+          `${formatCurrency(overtimePay)} | ` +
           `Gross pay: ${formatCurrency(grossPay)} | ` +
           `Deductions: ${formatCurrency(deductions)} | ` +
           `Take-home pay: ${formatCurrency(takeHomePay)}`;
       });
   </script>
 </body>
-</html> 
+</html>
