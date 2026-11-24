@@ -1,1 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Calculators</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f7fa;
+      color: #222;
+      font-family: system-ui, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .calculator {
+      margin: 20px 0;
+      padding: 24px;
+      background: white;
+      border: 1px solid #d9dce1;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px #00000012;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      margin-top: 7px;
+      padding: 12px;
+      border-radius: 6px;
+      font: inherit;
+    }
+
+    input,
+    select {
+      border: 2px solid #9aa4b2;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #1769e0;
+      outline: 2px solid #1769e055;
+    }
+
+    button {
+      margin-top: 18px;
+      border: 0;
+      background: #1769e0;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0e4fae;
+    }
+
+    .result {
+      min-height: 24px;
+      margin-top: 16px;
+      font-weight: bold;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .error {
+      color: #b42318;
+    }
+
+    .hint {
+      margin-bottom: 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>My Calculators</h1>
+
+  <main>
+    <section class="calculator" aria-labelledby="tax-heading">
+      <h2 id="tax-heading">Sales Tax Calculator</h2>
+
+      <label for="price">Price before tax ($)</label>
+      <input
+        id="price"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Type the price here"
+      />
+
+      <label for="taxRate">Tax rate (%)</label>
+      <input
+        id="taxRate"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Type the tax rate here"
+      />
+
+      <button id="taxButton" type="button">Calculate tax</button>
+      <p id="taxResult" class="result" aria-live="polite"></p>
+    </section>
+
+    <section class="calculator" aria-labelledby="temperature-heading">
+      <h2 id="temperature-heading">Celsius and Fahrenheit Converter</h2>
+
+      <label for="temperature">Temperature</label>
+      <input
+        id="temperature"
+        type="number"
+        step="any"
+        placeholder="Type a temperature here"
+      />
+
+      <label for="temperatureDirection">Convert from and to</label>
+      <select id="temperatureDirection">
+        <option value="cToF">Celsius to Fahrenheit</option>
+        <option value="fToC">Fahrenheit to Celsius</option>
+      </select>
+
+      <button id="temperatureButton" type="button">
+        Convert temperature
+      </button>
+      <p id="temperatureResult" class="result" aria-live="polite"></p>
+    </section>
+
+    <section class="calculator" aria-labelledby="length-heading">
+      <h2 id="length-heading">Meters and Feet Converter</h2>
+
+      <label for="length">Length</label>
+      <input
+        id="length"
+        type="number"
+        min="0"
+        step="any"
+        placeholder="Type a length here"
+      />
+
+      <label for="lengthDirection">Convert from and to</label>
+      <select id="lengthDirection">
+        <option value="mToFt">Meters to feet</option>
+        <option value="ftToM">Feet to meters</option>
+      </select>
+
+      <button id="lengthButton" type="button">Convert length</button>
+      <p id="lengthResult" class="result" aria-live="polite"></p>
+    </section>
+
+    <section class="calculator" aria-labelledby="loop-heading">
+      <h2 id="loop-heading">Loop Lab</h2>
+      <p class="hint">
+        Try the factorial, sum, and average examples using different JavaScript loops.
+      </p>
+
+      <h3>Factorial (while loop)</h3>
+      <label for="factorialNumber">Whole number from 0 to 170</label>
+      <input
+        id="factorialNumber"
+        type="number"
+        min="0"
+        max="170"
+        step="1"
+        placeholder="Example: 5"
+      />
+      <button id="factorialButton" type="button">
+        Calculate factorial
+      </button>
+      <p id="factorialResult" class="result" aria-live="polite"></p>
+
+      <h3>Sum (do...while loop)</h3>
+      <label for="sumNumbers">Numbers separated by commas</label>
+      <input
+        id="sumNumbers"
+        type="text"
+        placeholder="Example: 5, 10, 15"
+      />
+      <button id="sumButton" type="button">Calculate sum</button>
+      <p id="sumResult" class="result" aria-live="polite"></p>
+
+      <h3>Average (for loop)</h3>
+      <label for="averageNumbers">Numbers separated by commas</label>
+      <input
+        id="averageNumbers"
+        type="text"
+        placeholder="Example: 5, 10, 15"
+      />
+      <button id="averageButton" type="button">Calculate average</button>
+      <p id="averageResult" class="result" aria-live="polite"></p>
+    </section>
+
+    <section class="calculator" aria-labelledby="payroll-heading">
+      <h2 id="payroll-heading">Simple Payroll</h2>
+      <p class="hint">
+        This example uses a 40-hour workweek and pays overtime at 1.5 times
+        the hourly rate. Enter total deductions as a dollar amount.
+      </p>
+
+      <label for="hourlyRate">Hourly pay rate ($)</label>
+      <input
+        id="hourlyRate"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 20.00"
+      />
+
+      <label for="hoursWorked">Total hours worked</label>
+      <input
+        id="hoursWorked"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 45"
+      />
+
+      <label for="deductions">Deductions ($)</label>
+      <input
+        id="deductions"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Example: 75.00"
+      />
+
+      <button id="payrollButton" type="button">Calculate payroll</button>
+      <p id="payrollResult" class="result" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script>
+    function formatCurrency(amount) {
+      return amount.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+      });
+    }
+
+    function showError(element, message) {
+      element.textContent = message;
+      element.classList.add("error");
+    }
+
+    function clearError(element) {
+      element.classList.remove("error");
+      element.textContent = "";
+    }
+
+    function parseNumberList(inputText) {
+      const trimmedText = inputText.trim();
+
+      if (trimmedText === "") {
+        return null;
+      }
+
+      const parts = trimmedText.split(",").map((part) => part.trim());
+
+      if (parts.some((part) => part === "")) {
+        return null;
+      }
+
+      const numbers = parts.map(Number);
+
+      if (numbers.some((number) => !Number.isFinite(number))) {
+        return null;
+      }
+
+      return numbers;
+    }
+
+    // Sales tax calculator
+    document.querySelector("#taxButton").addEventListener("click", () => {
+      const priceText = document.querySelector("#price").value;
+      const rateText = document.querySelector("#taxRate").value;
+      const result = document.querySelector("#taxResult");
+
+      clearError(result);
+
+      if (priceText === "" || rateText === "") {
+        showError(result, "Enter both the price and the tax rate.");
+        return;
+      }
+
+      const price = Number(priceText);
+      const rate = Number(rateText);
+
+      if (price < 0 || rate < 0) {
+        showError(result, "Price and tax rate cannot be negative.");
+        return;
+      }
+
+      const tax = price * rate / 100;
+      const total = price + tax;
+
+      result.textContent =
+        `Tax: ${formatCurrency(tax)} | Total with tax: ${formatCurrency(total)}`;
+    });
+
+    // Celsius/Fahrenheit converter
+    document
+      .querySelector("#temperatureButton")
+      .addEventListener("click", () => {
+        const input = document.querySelector("#temperature").value;
+        const direction =
+          document.querySelector("#temperatureDirection").value;
+        const result = document.querySelector("#temperatureResult");
+
+        clearError(result);
+
+        if (input === "") {
+          showError(result, "Enter a temperature.");
+          return;
+        }
+
+        const value = Number(input);
+
+        if (direction === "cToF") {
+          const answer = value * 9 / 5 + 32;
+          result.textContent = `${value} °C = ${answer.toFixed(2)} °F`;
+        } else {
+          const answer = (value - 32) * 5 / 9;
+          result.textContent = `${value} °F = ${answer.toFixed(2)} °C`;
+        }
+      });
+
+    // Meters/feet converter
+    document.querySelector("#lengthButton").addEventListener("click", () => {
+      const input = document.querySelector("#length").value;
+      const direction = document.querySelector("#lengthDirection").value;
+      const result = document.querySelector("#lengthResult");
+
+      clearError(result);
+
+      if (input === "") {
+        showError(result, "Enter a length.");
+        return;
+      }
+
+      const value = Number(input);
+
+      if (value < 0) {
+        showError(result, "Length cannot be negative.");
+        return;
+      }
+
+      if (direction === "mToFt") {
+        const answer = value * 3.28084;
+        result.textContent = `${value} meters = ${answer.toFixed(2)} feet`;
+      } else {
+        const answer = value / 3.28084;
+        result.textContent = `${value} feet = ${answer.toFixed(2)} meters`;
+      }
+    });
+
+    // Factorial using a while loop
+    document
+      .querySelector("#factorialButton")
+      .addEventListener("click", () => {
+        const input = document.querySelector("#factorialNumber").value;
+        const result = document.querySelector("#factorialResult");
+
+        clearError(result);
+
+        if (input === "") {
+          showError(result, "Enter a whole number from 0 to 170.");
+          return;
+        }
+
+        const number = Number(input);
+
+        if (!Number.isInteger(number) || number < 0 || number > 170) {
+          showError(result, "Enter a whole number from 0 to 170.");
+          return;
+        }
+
+        let factorial = 1;
+        let counter = 1;
+
+        while (counter <= number) {
+          factorial *= counter;
+          counter++;
+        }
+
+        result.textContent = `${number}! = ${factorial}`;
+      });
+
+    // Sum using a do...while loop
+    document.querySelector("#sumButton").addEventListener("click", () => {
+      const input = document.querySelector("#sumNumbers").value;
+      const result = document.querySelector("#sumResult");
+
+      clearError(result);
+
+      const numbers = parseNumberList(input);
+
+      if (!numbers) {
+        showError(
+          result,
+          "Enter valid numbers separated by commas, such as 5, 10, 15."
+        );
+        return;
+      }
+
+      let sum = 0;
+      let index = 0;
+
+      do {
+        sum += numbers[index];
+        index++;
+      } while (index < numbers.length);
+
+      result.textContent = `Sum: ${sum}`;
+    });
+
+    // Average using a for loop
+    document.querySelector("#averageButton").addEventListener("click", () => {
+      const input = document.querySelector("#averageNumbers").value;
+      const result = document.querySelector("#averageResult");
+
+      clearError(result);
+
+      const numbers = parseNumberList(input);
+
+      if (!numbers) {
+        showError(
+          result,
+          "Enter valid numbers separated by commas, such as 5, 10, 15."
+        );
+        return;
+      }
+
+      let sum = 0;
+
+      for (let index = 0; index < numbers.length; index++) {
+        sum += numbers[index];
+      }
+
+      const average = sum / numbers.length;
+      result.textContent = `Average: ${average.toFixed(2)}`;
+    });
+
+    // Simple payroll calculator
+    document
+      .querySelector("#payrollButton")
+      .addEventListener("click", () => {
+        const rateText = document.querySelector("#hourlyRate").value;
+        const hoursText = document.querySelector("#hoursWorked").value;
+        const deductionsText = document.querySelector("#deductions").value;
+        const result = document.querySelector("#payrollResult");
+
+        clearError(result);
+
+        if (rateText === "" || hoursText === "" || deductionsText === "") {
+          showError(
+            result,
+            "Enter the hourly rate, hours worked, and deductions."
+          );
+          return;
+        }
+
+        const hourlyRate = Number(rateText);
+        const hoursWorked = Number(hoursText);
+        const deductions = Number(deductionsText);
+
+        if (
+          hourlyRate < 0 ||
+          hoursWorked < 0 ||
+          deductions < 0 ||
+          !Number.isFinite(hourlyRate) ||
+          !Number.isFinite(hoursWorked) ||
+          !Number.isFinite(deductions)
+        ) {
+          showError(result, "Values cannot be negative.");
+          return;
+        }
+
+        const regularHours = Math.min(hoursWorked, 40);
+        const overtimeHours = Math.max(hoursWorked - 40, 0);
+        const regularPay = regularHours * hourlyRate;
+        const overtimePay = overtimeHours * hourlyRate * 1.5;
+        const grossPay = regularPay + overtimePay;
+        const takeHomePay = grossPay - deductions;
+
+        result.textContent =
+          `Regular pay (${regularHours} hours): ${formatCurrency(regularPay)} | ` +
+          `Overtime pay (${overtimeHours} hours): ${formatCurrency(overtimePay)} | ` +
+          `Gross pay: ${formatCurrency(grossPay)} | ` +
+          `Deductions: ${formatCurrency(deductions)} | ` +
+          `Take-home pay: ${formatCurrency(takeHomePay)}`;
+      });
+  </script>
+</body>
+</html> 
